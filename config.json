@@ -1,0 +1,9 @@
+{
+    "data_dir": "data",
+    "rates_ttl_seconds": 300,
+    "default_base_currency": "USD",
+    "log_level": "INFO",
+    "log_file": "logs/valutatrade.log",
+    "max_log_size_mb": 10,
+    "backup_count": 5
+}

@@ -1,0 +1,31 @@
+[project]
+name = "finaldenisov"
+version = "0.1.0"
+description = "Консольное приложение для управления валютным кошельком"
+authors = [
+    {name = "Sergey", email = "sergey1999den@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["prettytable (>=3.16.0,<4.0.0)"]
+
+[project.scripts]
+project = "main:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [
+    { include = "valutatrade_hub" },
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+prettytable = "^3.16.0"
+
