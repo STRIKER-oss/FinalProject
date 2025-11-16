@@ -1,6 +1,4 @@
 """Командный интерфейс приложения."""
-import sys
-import getpass
 import argparse
 from prettytable import PrettyTable
 from ..core.usecases import UserManager, PortfolioManager, CurrencyManager
@@ -9,32 +7,33 @@ from ..core.exceptions import (
     UserNotFoundError, UserAlreadyExistsError, InvalidPasswordError,
     WalletNotFoundError, InvalidAmountError, ExchangeRateUnavailableError
 )
-from ..core.utils import validate_currency_code, validate_amount, format_datetime
+from ..core.utils import format_datetime
 from ..core.currencies import CurrencyRegistry
 from ..infra.settings import settings
 from ..logging_config import get_logger
-
-logger = get_logger(__name__)
+from ..parser_service.updater import RatesUpdater
+from ..parser_service.storage import RatesStorage
+from ..parser_service.api_clients import ApiClientFactory
 
 
 class CLIInterface:
-    """Класс для взаимодействия с пользователем через CLI."""
-    
     def __init__(self):
         self.user_manager = UserManager()
         self.currency_manager = CurrencyManager()
         self.portfolio_manager = PortfolioManager(user_manager=self.user_manager)
         self.current_user = None
+        self.rates_storage = RatesStorage()
     
     def print_help(self):
-        """Вывод справки по командам."""
-        print("\n=== Valutatrade Hub - Доступные команды ===")
+        print("\n=== Биржевой помощник - Доступные команды ===")
         print("register --username <name> --password <pass>  - Регистрация")
         print("login --username <name> --password <pass>     - Вход в систему")
         print("show-portfolio [--base <curr>]                - Показать портфель")
         print("buy --currency <curr> --amount <num>          - Купить валюту")
         print("sell --currency <curr> --amount <num>         - Продать валюту")
         print("get-rate --from <curr> --to <curr>            - Получить курс")
+        print("update-rates [--source <src>]                 - Обновить курсы валют")
+        print("show-rates [--currency <curr>] [--top <n>] [--base <curr>] - Показать курсы")
         print("list-currencies                               - Список валют")
         print("help                                          - Показать справку")
         print("exit                                          - Выйти")
@@ -43,10 +42,11 @@ class CLIInterface:
         print("  sell --currency BTC --amount 0.5")
         print("  get-rate --from USD --to EUR")
         print("  show-portfolio --base EUR")
+        print("  update-rates --source coingecko")
+        print("  show-rates --top 5 --base EUR")
     
     def run(self):
-        """Запуск интерфейса."""
-        print("Добро пожаловать в Valutatrade Hub!")
+        print("Добро пожаловать в Биржевой помощник!")
         print("Введите 'help' для списка команд или 'exit' для выхода.")
         
         while True:
@@ -67,6 +67,10 @@ class CLIInterface:
                     self.list_currencies()
                 elif user_input.startswith("show-portfolio"):
                     self.handle_show_portfolio(user_input.split()[1:])
+                elif user_input.startswith("update-rates"):
+                    self.handle_update_rates(user_input.split()[1:])
+                elif user_input.startswith("show-rates"):
+                    self.handle_show_rates(user_input.split()[1:])
                 elif user_input == "":
                     continue
                 else:
@@ -77,10 +81,8 @@ class CLIInterface:
                 break
             except Exception as e:
                 print(f"Ошибка: {e}")
-                logger.error(f"CLI error: {e}", exc_info=True)
     
     def parse_command(self, command_line: str):
-        """Парсинг командной строки."""
         parts = command_line.split()
         if not parts:
             return
@@ -101,8 +103,162 @@ class CLIInterface:
         else:
             print("Неизвестная команда. Введите 'help' для списка команд.")
     
+    def handle_update_rates(self, args):
+        parser = argparse.ArgumentParser(prog='update-rates', add_help=False)
+        parser.add_argument('--source', choices=['coingecko', 'exchangerate'], 
+                          help='Источник данных')
+        
+        try:
+            parsed_args = parser.parse_args(args)
+            self.update_rates(parsed_args.source)
+        except SystemExit:
+            print("Использование: update-rates [--source <coingecko|exchangerate>]")
+        except Exception as e:
+            print(f"Ошибка: {e}")
+    
+    def update_rates(self, source: str = None):
+        print("Запуск обновления курсов валют...")
+        
+        try:
+            clients = []
+            if source is None:
+                clients.append(ApiClientFactory.create_client('exchangerate'))
+                clients.append(ApiClientFactory.create_client('coingecko'))
+            elif source == 'coingecko':
+                clients.append(ApiClientFactory.create_client('coingecko'))
+            elif source == 'exchangerate':
+                clients.append(ApiClientFactory.create_client('exchangerate'))
+            
+            updater = RatesUpdater(clients=clients)
+            result = updater.run_update()
+            
+            print("Обновление завершено успешно!")
+            print(f"Всего обновлено курсов: {result['total_rates']}")
+            print(f"Время обновления: {result['timestamp']}")
+            
+            if result['successful']:
+                print("\nУспешные обновления:")
+                for success in result['successful']:
+                    print(f"  - {success['client']}: {success['rates_count']} курсов")
+            
+            if result['failed']:
+                print("\nОшибки:")
+                for error in result['failed']:
+                    print(f"  - {error['client']}: {error['error']}")
+                
+        except ApiRequestError as e:
+            print(f"Ошибка при обновлении курсов: {e}")
+            print("Проверьте подключение к интернету и повторите попытку")
+        except Exception as e:
+            print(f"Не удалось обновить курсы: {e}")
+    
+    def handle_show_rates(self, args):
+        parser = argparse.ArgumentParser(prog='show-rates', add_help=False)
+        parser.add_argument('--currency', help='Показать курс только для указанной валюты')
+        parser.add_argument('--top', type=int, help='Показать N самых дорогих криптовалют')
+        parser.add_argument('--base', default='USD', help='Базовая валюта для отображения')
+        
+        try:
+            parsed_args = parser.parse_args(args)
+            self.show_rates(parsed_args.currency, parsed_args.top, parsed_args.base)
+        except SystemExit:
+            print("Использование: show-rates [--currency <curr>] [--top <n>] [--base <curr>]")
+        except Exception as e:
+            print(f"Ошибка: {e}")
+    
+    def show_rates(self, currency: str = None, top: int = None, base_currency: str = 'USD'):
+        try:
+            rates_data = self.rates_storage.load_current_rates()
+            
+            if not rates_data or 'pairs' not in rates_data or not rates_data['pairs']:
+                print("Локальный кеш курсов пуст. Выполните 'update-rates', чтобы загрузить данные.")
+                return
+            
+            pairs = rates_data['pairs']
+            last_refresh = rates_data.get('last_refresh', 'Неизвестно')
+            
+            filtered_rates = {}
+            
+            for pair_key, rate_info in pairs.items():
+                if '_' not in pair_key:
+                    continue
+                
+                from_curr, to_curr = pair_key.split('_', 1)
+                
+                if currency and from_curr != currency.upper() and to_curr != currency.upper():
+                    continue
+                
+                if base_currency.upper() != 'USD':
+                    if to_curr == 'USD':
+                        try:
+                            base_rate = self.currency_manager.get_rate('USD', base_currency.upper())
+                            converted_rate = rate_info['rate'] * base_rate
+                            display_pair = f"{from_curr}_{base_currency.upper()}"
+                            filtered_rates[display_pair] = {
+                                'rate': converted_rate,
+                                'updated_at': rate_info.get('updated_at', ''),
+                                'source': rate_info.get('source', '')
+                            }
+                        except (CurrencyNotFoundError, ExchangeRateUnavailableError):
+                            continue
+                    else:
+                        continue
+                else:
+                    filtered_rates[pair_key] = rate_info
+            
+            if not filtered_rates:
+                if currency:
+                    print(f"Курс для '{currency}' не найден в кеше.")
+                else:
+                    print("Нет данных для отображения с указанными фильтрами.")
+                return
+            
+            sorted_rates = sorted(
+                filtered_rates.items(),
+                key=lambda x: x[1]['rate'] if top else x[0]
+            )
+            
+            if top and top > 0:
+                sorted_rates = sorted(
+                    filtered_rates.items(),
+                    key=lambda x: x[1]['rate'],
+                    reverse=True
+                )[:top]
+            
+            print(f"\nКурсы из кеша (обновлено: {format_datetime(last_refresh)}):")
+            print("-" * 80)
+            
+            table = PrettyTable()
+            table.field_names = ["Валютная пара", "Курс", "Обновлено", "Источник"]
+            table.align = "r"
+            table.align["Валютная пара"] = "l"
+            table.align["Источник"] = "l"
+            
+            for pair_key, rate_info in sorted_rates:
+                rate = rate_info['rate']
+                updated_at = format_datetime(rate_info.get('updated_at', ''))
+                source = rate_info.get('source', 'Неизвестно')
+                
+                if rate >= 1000:
+                    rate_str = f"{rate:,.2f}"
+                elif rate >= 1:
+                    rate_str = f"{rate:.4f}"
+                elif rate >= 0.01:
+                    rate_str = f"{rate:.6f}"
+                else:
+                    rate_str = f"{rate:.8f}"
+                
+                table.add_row([pair_key, rate_str, updated_at, source])
+            
+            print(table)
+            print(f"Всего курсов: {len(sorted_rates)}")
+            
+        except FileNotFoundError:
+            print("Локальный кеш курсов пуст. Выполните 'update-rates', чтобы загрузить данные.")
+        except Exception as e:
+            print(f"Ошибка при загрузке курсов: {e}")
+    
     def handle_show_portfolio(self, args):
-        """Обработка команды show-portfolio."""
         parser = argparse.ArgumentParser(prog='show-portfolio', add_help=False)
         parser.add_argument('--base', default=settings.get_default_base_currency(), 
                           help='Базовая валюта конвертации')
@@ -114,88 +270,77 @@ class CLIInterface:
             print("Использование: show-portfolio [--base <curr>]")
         except Exception as e:
             print(f"Ошибка: {e}")
-            logger.error(f"Show portfolio error: {e}")
     
     def show_portfolio(self, base_currency: str = None):
-        """Показать портфель и балансы."""
         if not self.current_user:
             print("Ошибка: Сначала выполните вход в систему (login)")
             return
         
-        # Используем базовую валюту из настроек если не указана
         if base_currency is None:
             base_currency = settings.get_default_base_currency()
         
         base_currency = base_currency.upper()
         
-        # Проверяем базовую валюту через иерархию валют
         try:
-            currency_obj = CurrencyRegistry.get_currency(base_currency)
+            CurrencyRegistry.get_currency(base_currency)
         except CurrencyNotFoundError:
             print(f"Ошибка: Неизвестная базовая валюта '{base_currency}'")
             print("Используйте 'list-currencies' для просмотра поддерживаемых валют")
             return
         
-        # Загружаем портфель пользователя
         try:
             portfolio = self.portfolio_manager.get_portfolio(self.current_user.user_id)
             wallets = portfolio.wallets
-        except Exception as e:
-            print(f"Ошибка при загрузке портфеля: {e}")
-            return
-        
-        if not wallets:
-            print("Ваш портфель пуст. Используйте 'buy' для покупки валюты.")
-            return
-        
-        print(f"\nПортфель пользователя '{self.current_user.username}' (базовая валюта: {base_currency}):")
-        print("-" * 60)
-        
-        total_value = 0.0
-        table = PrettyTable()
-        table.field_names = ["Валюта", "Баланс", "Курс к базовой", "Стоимость в базовой"]
-        table.align = "r"
-        table.align["Валюта"] = "l"
-        
-        for currency_code, wallet in wallets.items():
-            balance = wallet.balance
             
-            # Получаем курс конвертации в базовую валюту
-            if currency_code == base_currency:
-                value_in_base = balance
-                rate_info = "1.0000"
-            else:
-                try:
-                    exchange_rate = self.currency_manager.get_rate(currency_code, base_currency)
-                    if exchange_rate:
-                        value_in_base = balance * exchange_rate
-                        rate_info = f"{exchange_rate:.4f}"
-                    else:
+            if not wallets:
+                print("Ваш портфель пуст. Используйте 'buy' для покупки валюты.")
+                return
+            
+            print(f"\nПортфель пользователя '{self.current_user.username}' (базовая валюта: {base_currency}):")
+            print("-" * 60)
+            
+            total_value = 0.0
+            table = PrettyTable()
+            table.field_names = ["Валюта", "Баланс", "Курс к базовой", "Стоимость в базовой"]
+            table.align = "r"
+            table.align["Валюта"] = "l"
+            
+            for currency_code, wallet in wallets.items():
+                balance = wallet.balance
+                
+                if currency_code == base_currency:
+                    value_in_base = balance
+                    rate_info = "1.0000"
+                else:
+                    try:
+                        exchange_rate = self.currency_manager.get_rate(currency_code, base_currency)
+                        if exchange_rate:
+                            value_in_base = balance * exchange_rate
+                            rate_info = f"{exchange_rate:.4f}"
+                        else:
+                            value_in_base = 0.0
+                            rate_info = "N/A"
+                    except (CurrencyNotFoundError, ExchangeRateUnavailableError, ApiRequestError):
                         value_in_base = 0.0
                         rate_info = "N/A"
-                except (CurrencyNotFoundError, ExchangeRateUnavailableError, ApiRequestError):
-                    value_in_base = 0.0
-                    rate_info = "N/A"
+                
+                total_value += value_in_base
+                
+                table.add_row([
+                    f"{currency_code}",
+                    f"{balance:.4f}",
+                    f"{rate_info}",
+                    f"{value_in_base:.2f} {base_currency}"
+                ])
             
-            total_value += value_in_base
+            print(table)
+            print("-" * 60)
+            print(f"ИТОГО: {total_value:,.2f} {base_currency}")
             
-            # Добавляем строку в таблицу
-            table.add_row([
-                f"{currency_code}",
-                f"{balance:.4f}",
-                f"{rate_info}",
-                f"{value_in_base:.2f} {base_currency}"
-            ])
-        
-        # Выводим таблицу
-        print(table)
-        
-        # Показываем итоговую сумму
-        print("-" * 60)
-        print(f"ИТОГО: {total_value:,.2f} {base_currency}")
+        except Exception as e:
+            print(f"Ошибка при загрузке портфеля: {e}")
     
     def handle_register(self, args):
-        """Обработка команды register."""
         parser = argparse.ArgumentParser(prog='register', add_help=False)
         parser.add_argument('--username', required=True, help='Имя пользователя')
         parser.add_argument('--password', required=True, help='Пароль')
@@ -211,15 +356,13 @@ class CLIInterface:
             print(f"Ошибка валидации: {e}")
         except Exception as e:
             print(f"Неожиданная ошибка: {e}")
-            logger.error(f"Registration error: {e}")
     
     def register(self, username: str, password: str):
-        """Регистрация пользователя."""
         try:
             if self.user_manager.register_user(username, password):
                 user = self.user_manager.find_user_by_username(username)
                 print(f"Пользователь '{username}' успешно зарегистрирован (id={user.user_id})")
-                print(f"На ваш счет зачислено 10,000 USD стартового капитала")
+                print("На ваш счет зачислено 10,000 USD стартового капитала")
                 print(f"Теперь вы можете войти: login --username {username} --password [ваш пароль]")
         except UserAlreadyExistsError as e:
             print(f"{e}")
@@ -229,7 +372,6 @@ class CLIInterface:
             print(f"Ошибка при регистрации: {e}")
     
     def handle_login(self, args):
-        """Обработка команды login."""
         parser = argparse.ArgumentParser(prog='login', add_help=False)
         parser.add_argument('--username', required=True, help='Имя пользователя')
         parser.add_argument('--password', required=True, help='Пароль')
@@ -243,22 +385,19 @@ class CLIInterface:
             print(f"{e}")
         except Exception as e:
             print(f"Неожиданная ошибка: {e}")
-            logger.error(f"Login error: {e}")
     
     def login(self, username: str, password: str):
-        """Вход пользователя."""
         try:
             if self.user_manager.authenticate_user(username, password):
                 self.current_user = self.user_manager.find_user_by_username(username)
                 print(f"Вы успешно вошли как '{username}'")
-                print(f"Для просмотра портфеля используйте: show-portfolio")
+                print("Для просмотра портфеля используйте: show-portfolio")
         except (UserNotFoundError, InvalidPasswordError) as e:
             print(f"{e}")
         except Exception as e:
             print(f"Ошибка при входе: {e}")
     
     def handle_buy(self, args):
-        """Обработка команды buy."""
         if not self.current_user:
             print("Ошибка: Для покупки валюты необходимо войти в систему")
             return
@@ -277,22 +416,17 @@ class CLIInterface:
             print(f"{e}")
         except Exception as e:
             print(f"Неожиданная ошибка: {e}")
-            logger.error(f"Buy error: {e}")
     
     def buy_currency(self, currency: str, amount: float):
-        """Купить валюту."""
         currency = currency.upper()
         
         try:
-            # Получаем информацию о валюте для красивого вывода
-            currency_obj = CurrencyRegistry.get_currency(currency)
+            CurrencyRegistry.get_currency(currency)
             
-            # Получаем текущий портфель пользователя до операции
             portfolio = self.portfolio_manager.get_portfolio(self.current_user.user_id)
             old_balance = portfolio.get_balance(currency)
             old_usd_balance = portfolio.get_balance("USD")
             
-            # Получаем текущий курс для информации
             exchange_rate = self.currency_manager.get_rate("USD", currency)
             purchase_cost = amount * exchange_rate
             
@@ -300,13 +434,11 @@ class CLIInterface:
             print(f"Стоимость покупки: {purchase_cost:.2f} USD")
             print(f"Курс: 1 {currency} = {exchange_rate:.2f} USD")
             
-            # Выполняем покупку
             if self.portfolio_manager.buy_currency(self.current_user.user_id, currency, amount):
-                # Получаем новый баланс после покупки
                 new_balance = portfolio.get_balance(currency)
                 new_usd_balance = portfolio.get_balance("USD")
                 
-                print(f"Покупка выполнена успешно!")
+                print("Покупка выполнена успешно!")
                 print("\nИзменения в портфеле:")
                 print(f"   {currency}: {old_balance:.4f} → {new_balance:.4f} (+{amount:.4f})")
                 print(f"   USD: {old_usd_balance:.2f} → {new_usd_balance:.2f} (-{purchase_cost:.2f})")
@@ -332,7 +464,6 @@ class CLIInterface:
             print(f"Не удалось выполнить покупку: {e}")
     
     def handle_sell(self, args):
-        """Обработка команды sell."""
         if not self.current_user:
             print("Ошибка: Для продажи валюты необходимо войти в систему")
             return
@@ -351,22 +482,17 @@ class CLIInterface:
             print(f"{e}")
         except Exception as e:
             print(f"Неожиданная ошибка: {e}")
-            logger.error(f"Sell error: {e}")
     
     def sell_currency(self, currency: str, amount: float):
-        """Продать валюту."""
         currency = currency.upper()
         
         try:
-            # Получаем информацию о валюте для красивого вывода
-            currency_obj = CurrencyRegistry.get_currency(currency)
+            CurrencyRegistry.get_currency(currency)
             
-            # Получаем текущий портфель пользователя до операции
             portfolio = self.portfolio_manager.get_portfolio(self.current_user.user_id)
             old_balance = portfolio.get_balance(currency)
             old_usd_balance = portfolio.get_balance("USD")
             
-            # Получаем текущий курс для информации
             exchange_rate = self.currency_manager.get_rate(currency, "USD")
             usd_revenue = amount * exchange_rate
             
@@ -374,7 +500,6 @@ class CLIInterface:
             print(f"Ожидаемая выручка: {usd_revenue:.2f} USD")
             print(f"Курс: 1 {currency} = {exchange_rate:.2f} USD")
             
-            # Проверяем наличие достаточного количества валюты
             if old_balance < amount:
                 raise InsufficientFundsError(
                     currency_code=currency,
@@ -382,13 +507,11 @@ class CLIInterface:
                     required=amount
                 )
             
-            # Выполняем продажу
             if self.portfolio_manager.sell_currency(self.current_user.user_id, currency, amount):
-                # Получаем новый баланс после продажи
                 new_balance = portfolio.get_balance(currency)
                 new_usd_balance = portfolio.get_balance("USD")
                 
-                print(f"Продажа выполнена успешно!")
+                print("Продажа выполнена успешно!")
                 print("\nИзменения в портфеле:")
                 print(f"   {currency}: {old_balance:.4f} → {new_balance:.4f} (-{amount:.4f})")
                 print(f"   USD: {old_usd_balance:.2f} → {new_usd_balance:.2f} (+{usd_revenue:.2f})")
@@ -417,7 +540,6 @@ class CLIInterface:
             print(f"Не удалось выполнить продажу: {e}")
     
     def handle_get_rate(self, args):
-        """Обработка команды get-rate."""
         parser = argparse.ArgumentParser(prog='get-rate', add_help=False)
         parser.add_argument('--from', required=True, dest='from_currency', help='Исходная валюта')
         parser.add_argument('--to', required=True, dest='to_currency', help='Целевая валюта')
@@ -435,19 +557,15 @@ class CLIInterface:
                 print("Повторите попытку позже или проверьте подключение к сети")
         except Exception as e:
             print(f"Неожиданная ошибка: {e}")
-            logger.error(f"Get rate error: {e}")
     
     def get_rate(self, from_currency: str, to_currency: str):
-        """Получить курс валюты."""
         from_currency = from_currency.upper()
         to_currency = to_currency.upper()
         
         try:
-            # Получаем информацию о валютах для красивого вывода
-            from_curr_obj = CurrencyRegistry.get_currency(from_currency)
-            to_curr_obj = CurrencyRegistry.get_currency(to_currency)
+            CurrencyRegistry.get_currency(from_currency)
+            CurrencyRegistry.get_currency(to_currency)
             
-            # Получаем курс с информацией
             rate_info = self.currency_manager.get_rate_with_info(from_currency, to_currency)
             
             if rate_info:
@@ -455,8 +573,7 @@ class CLIInterface:
                 updated_at = rate_info['updated_at']
                 reverse_rate = rate_info['reverse_rate']
                 
-                # Форматируем вывод
-                print(f"\nКурс обмена:")
+                print("\nКурс обмена:")
                 print(f"   {from_currency} → {to_currency}: {rate:.6f}")
                 
                 if reverse_rate:
@@ -466,7 +583,6 @@ class CLIInterface:
                     formatted_time = format_datetime(updated_at)
                     print(f"   Обновлено: {formatted_time}")
                 
-                # Показываем пример конвертации
                 print(f"\nПример: 100 {from_currency} = {100 * rate:.2f} {to_currency}")
                 
             else:
@@ -486,7 +602,6 @@ class CLIInterface:
             print("Попробуйте другую валютную пару или повторите позже")
     
     def list_currencies(self):
-        """Показать список поддерживаемых валют."""
         try:
             supported_currencies = CurrencyRegistry.get_supported_currencies()
             
@@ -495,7 +610,7 @@ class CLIInterface:
             table.align = "l"
             
             for code, data in supported_currencies.items():
-                currency = CurrencyRegistry.get_currency(code)
+                CurrencyRegistry.get_currency(code)
                 if data["type"] == "fiat":
                     info = f"Страна: {data['issuing_country']}"
                 else:
@@ -509,4 +624,3 @@ class CLIInterface:
             
         except Exception as e:
             print(f"Ошибка при получении списка валют: {e}")
-            logger.error(f"List currencies error: {e}")

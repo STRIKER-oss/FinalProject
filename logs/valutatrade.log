@@ -39,3 +39,142 @@ INFO 2025-11-14T10:36:30  [action=GET_RATE result=OK]
 INFO 2025-11-14T10:36:30  [action=SELL currency='5' amount=EUR result=OK]
 INFO 2025-11-14T10:36:39  [action=GET_RATE result=OK]
 INFO 2025-11-14T10:36:39  [action=GET_RATE result=OK]
+WARNING 2025-11-16T10:38:21  [action=REGISTER result=ERROR error_type='UserAlreadyExistsError' error='Пользователь 'trader1' уже существует']
+INFO 2025-11-16T10:38:55  [action=REGISTER result=OK]
+INFO 2025-11-16T10:39:04  [action=LOGIN result=OK]
+INFO 2025-11-16T10:39:32 Запуск обновления курсов валют
+INFO 2025-11-16T10:39:32 Опрос клиента: ExchangeRateApiClient
+ERROR 2025-11-16T10:39:32 Ошибка в клиенте ExchangeRateApiClient: Ошибка при обращении к внешнему API: Не удалось получить курсы фиатных валют от ExchangeRate-API
+INFO 2025-11-16T10:39:32 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T10:39:32 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T10:39:32 Обновление завершено. Успешно: 1, Ошибок: 1, Всего курсов: 5
+INFO 2025-11-16T10:46:10 Запуск обновления курсов валют
+INFO 2025-11-16T10:46:10 Опрос клиента: ExchangeRateApiClient
+ERROR 2025-11-16T10:46:11 Ошибка в клиенте ExchangeRateApiClient: Ошибка при обращении к внешнему API: Не удалось получить курсы фиатных валют от ExchangeRate-API
+INFO 2025-11-16T10:46:11 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T10:46:11 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T10:46:11 Обновление завершено. Успешно: 1, Ошибок: 1, Всего курсов: 5
+INFO 2025-11-16T10:47:19  [action=LOGIN result=OK]
+INFO 2025-11-16T10:47:27 Запуск обновления курсов валют
+INFO 2025-11-16T10:47:27 Опрос клиента: ExchangeRateApiClient
+ERROR 2025-11-16T10:47:27 Ошибка в клиенте ExchangeRateApiClient: Ошибка при обращении к внешнему API: Не удалось получить курсы фиатных валют от ExchangeRate-API
+INFO 2025-11-16T10:47:27 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T10:47:27 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T10:47:27 Обновление завершено. Успешно: 1, Ошибок: 1, Всего курсов: 5
+INFO 2025-11-16T10:51:19  [action=LOGIN result=OK]
+INFO 2025-11-16T10:51:24 Запуск обновления курсов валют
+INFO 2025-11-16T10:51:24 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T10:51:24 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T10:51:24 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T10:51:24 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T10:51:24 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T10:52:51  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:52:51  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:52:51  [action=BUY currency='6' amount=EUR result=OK]
+INFO 2025-11-16T10:52:57  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:52:57  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:52:57  [action=BUY currency='6' amount=BTC result=OK]
+INFO 2025-11-16T10:53:02  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:02  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:07  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:07  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:07  [action=SELL currency='6' amount=EUR result=OK]
+INFO 2025-11-16T10:53:15  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:15  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:32  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:32  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:32  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:32  [action=GET_RATE result=OK]
+INFO 2025-11-16T10:53:32  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:03:53  [action=REGISTER result=OK]
+WARNING 2025-11-16T13:04:15  [action=LOGIN result=ERROR error_type='InvalidPasswordError' error='Неверный пароль для пользователя 'trader13'']
+INFO 2025-11-16T13:04:34  [action=LOGIN result=OK]
+INFO 2025-11-16T13:04:56 Запуск обновления курсов валют
+INFO 2025-11-16T13:04:56 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T13:04:56 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T13:04:56 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T13:04:57 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T13:04:57 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T13:05:49  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:06:07  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:06:07  [action=GET_RATE result=OK]
+WARNING 2025-11-16T13:06:07  [action=BUY currency='7' amount=BTC result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 0.0000 USD, требуется 0.0000 USD']
+INFO 2025-11-16T13:11:55  [action=REGISTER result=OK]
+INFO 2025-11-16T13:12:04  [action=LOGIN result=OK]
+INFO 2025-11-16T13:12:14  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:12:14  [action=GET_RATE result=OK]
+WARNING 2025-11-16T13:12:14  [action=BUY currency='8' amount=EUR result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 0.0000 USD, требуется 460.0000 USD']
+WARNING 2025-11-16T13:19:38  [action=REGISTER result=ERROR error_type='UserAlreadyExistsError' error='Пользователь 'test' уже существует']
+INFO 2025-11-16T13:19:57  [action=REGISTER result=OK]
+INFO 2025-11-16T13:20:16  [action=LOGIN result=OK]
+INFO 2025-11-16T13:20:41  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:20:41  [action=GET_RATE result=OK]
+WARNING 2025-11-16T13:20:41  [action=BUY currency='9' amount=EUR result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 0.0000 USD, требуется 460.0000 USD']
+INFO 2025-11-16T13:51:54  [action=LOGIN result=OK]
+INFO 2025-11-16T13:52:21  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:52:21  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:52:21  [action=BUY currency='9' amount=EUR result=OK]
+INFO 2025-11-16T13:54:37  [action=LOGIN result=OK]
+INFO 2025-11-16T13:54:45  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:54:55 Запуск обновления курсов валют
+INFO 2025-11-16T13:54:55 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T13:54:55 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T13:54:55 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T13:54:56 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T13:54:56 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T13:55:16  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:55:54  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:55:54  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:55:54  [action=BUY currency='9' amount=EUR result=OK]
+INFO 2025-11-16T13:56:02  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:56:02  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:56:02  [action=BUY currency='9' amount=EUR result=OK]
+INFO 2025-11-16T13:56:15  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:56:26  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:56:26  [action=GET_RATE result=OK]
+INFO 2025-11-16T13:56:26  [action=BUY currency='9' amount=BTC result=OK]
+ERROR 2025-11-16T14:00:03  [action=LOGIN result=ERROR error_type='UnexpectedError' error='Пароль должен содержать не менее 4 символов']
+INFO 2025-11-16T14:00:10  [action=LOGIN result=OK]
+INFO 2025-11-16T14:00:29  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:00:29  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:00:29  [action=SELL currency='9' amount=BTC result=OK]
+WARNING 2025-11-16T14:02:12  [action=REGISTER result=ERROR error_type='UserAlreadyExistsError' error='Пользователь 'trader' уже существует']
+ERROR 2025-11-16T14:02:31  [action=REGISTER result=ERROR error_type='UnexpectedError' error='Пароль должен содержать не менее 4 символов']
+ERROR 2025-11-16T14:02:46  [action=REGISTER result=ERROR error_type='UnexpectedError' error='Имя пользователя должно содержать не менее 3 символов']
+INFO 2025-11-16T14:03:26  [action=REGISTER result=OK]
+ERROR 2025-11-16T14:05:09  [action=REGISTER result=ERROR error_type='UnexpectedError' error='Пароль должен содержать не менее 4 символов']
+INFO 2025-11-16T14:05:42  [action=REGISTER result=OK]
+ERROR 2025-11-16T14:06:00  [action=LOGIN result=ERROR error_type='UnexpectedError' error='Пароль должен содержать не менее 4 символов']
+ERROR 2025-11-16T14:06:06  [action=LOGIN result=ERROR error_type='UnexpectedError' error='Пароль должен содержать не менее 4 символов']
+INFO 2025-11-16T14:06:22  [action=LOGIN result=OK]
+INFO 2025-11-16T14:06:39 Запуск обновления курсов валют
+INFO 2025-11-16T14:06:39 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T14:06:39 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T14:06:39 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T14:06:40 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T14:06:40 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T14:07:35  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:07:51  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:07:51  [action=GET_RATE result=OK]
+WARNING 2025-11-16T14:07:51  [action=BUY currency='11' amount=EUR result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 0.0000 USD, требуется 920.0000 USD']
+INFO 2025-11-16T14:08:05  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:08:05  [action=GET_RATE result=OK]
+WARNING 2025-11-16T14:08:05  [action=BUY currency='11' amount=EUR result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 0.0000 USD, требуется 920.0000 USD']
+INFO 2025-11-16T14:10:50  [action=REGISTER result=OK]
+WARNING 2025-11-16T14:10:58  [action=LOGIN result=ERROR error_type='InvalidPasswordError' error='Неверный пароль для пользователя 'demo'']
+INFO 2025-11-16T14:11:07  [action=LOGIN result=OK]
+INFO 2025-11-16T14:13:40  [action=REGISTER result=OK]
+INFO 2025-11-16T14:13:50  [action=LOGIN result=OK]
+INFO 2025-11-16T14:14:16  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:14:16  [action=GET_RATE result=OK]
+WARNING 2025-11-16T14:14:16  [action=BUY currency='1' amount=EUR result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 0.0000 USD, требуется 92.0000 USD']
+INFO 2025-11-16T14:26:12  [action=LOGIN result=OK]
+INFO 2025-11-16T14:27:00  [action=REGISTER result=OK]
+INFO 2025-11-16T14:27:18  [action=LOGIN result=OK]
+INFO 2025-11-16T14:27:56  [action=LOGIN result=OK]
+INFO 2025-11-16T14:38:21  [action=REGISTER result=OK]
+INFO 2025-11-16T14:38:48  [action=LOGIN result=OK]
+INFO 2025-11-16T14:39:17  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:39:17  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:39:17  [action=BUY currency='3' amount=EUR result=OK]
+INFO 2025-11-16T14:39:31  [action=GET_RATE result=OK]
