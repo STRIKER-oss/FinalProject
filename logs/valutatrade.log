@@ -178,3 +178,499 @@ INFO 2025-11-16T14:39:17  [action=GET_RATE result=OK]
 INFO 2025-11-16T14:39:17  [action=GET_RATE result=OK]
 INFO 2025-11-16T14:39:17  [action=BUY currency='3' amount=EUR result=OK]
 INFO 2025-11-16T14:39:31  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:52:13  [action=REGISTER result=OK]
+INFO 2025-11-16T14:52:22  [action=LOGIN result=OK]
+INFO 2025-11-16T14:53:11 Запуск обновления курсов валют
+INFO 2025-11-16T14:53:11 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T14:53:11 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T14:53:11 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T14:53:11 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T14:53:11 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T14:54:02  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:54:12  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:54:12  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:54:12  [action=BUY currency='4' amount=BTC result=OK]
+INFO 2025-11-16T14:54:19  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:54:33  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:54:33  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:54:33  [action=BUY currency='4' amount=GBP result=OK]
+INFO 2025-11-16T14:55:33  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:55:33  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:55:33  [action=BUY currency='4' amount=ETH result=OK]
+INFO 2025-11-16T14:55:46  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:55:46  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:55:46  [action=BUY currency='4' amount=GBP result=OK]
+INFO 2025-11-16T14:56:01  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:01  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:01  [action=BUY currency='4' amount=BTC result=OK]
+INFO 2025-11-16T14:56:08  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:08  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:08  [action=BUY currency='4' amount=BTC result=OK]
+INFO 2025-11-16T14:56:09  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:09  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:09  [action=BUY currency='4' amount=BTC result=OK]
+INFO 2025-11-16T14:56:10  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:10  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:10  [action=BUY currency='4' amount=BTC result=OK]
+INFO 2025-11-16T14:56:16  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:16  [action=GET_RATE result=OK]
+INFO 2025-11-16T14:56:16  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:10:29  [action=REGISTER result=OK]
+INFO 2025-11-16T15:10:36  [action=LOGIN result=OK]
+INFO 2025-11-16T15:10:48 Запуск обновления курсов валют
+INFO 2025-11-16T15:10:48 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T15:10:49 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T15:10:49 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T15:10:49 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T15:10:49 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T15:11:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:11:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:11:13  [action=BUY currency='5' amount=EUR result=OK]
+INFO 2025-11-16T15:11:37  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:12:21  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:12:21  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:12:21  [action=BUY currency='5' amount=EUR result=OK]
+INFO 2025-11-16T15:12:32  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:12:32  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:12:32  [action=BUY currency='5' amount=BTC result=OK]
+INFO 2025-11-16T15:20:28  [action=REGISTER result=OK]
+INFO 2025-11-16T15:20:43  [action=LOGIN result=OK]
+INFO 2025-11-16T15:21:23 Запуск обновления курсов валют
+INFO 2025-11-16T15:21:23 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T15:21:24 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T15:21:24 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T15:21:24 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T15:21:24 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T15:21:45  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:22:00  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:22:00  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:22:00  [action=BUY currency='6' amount=EUR result=OK]
+INFO 2025-11-16T15:22:14  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:22:14  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:22:14  [action=BUY currency='6' amount=BTC result=OK]
+INFO 2025-11-16T15:22:19  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:22:19  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:22:19  [action=BUY currency='6' amount=BTC result=OK]
+INFO 2025-11-16T15:22:31  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:22:31  [action=GET_RATE result=OK]
+WARNING 2025-11-16T15:44:24  [action=LOGIN result=ERROR error_type='UserNotFoundError' error='Пользователь 'qwer' не найден']
+INFO 2025-11-16T15:44:44  [action=REGISTER result=OK]
+INFO 2025-11-16T15:44:53  [action=LOGIN result=OK]
+INFO 2025-11-16T15:45:29 Запуск обновления курсов валют
+INFO 2025-11-16T15:45:29 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T15:45:29 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T15:45:29 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T15:45:30 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T15:45:30 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T15:45:50  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:46:00  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:46:00  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:46:00  [action=BUY currency='7' amount=EUR result=OK]
+INFO 2025-11-16T15:46:06  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:46:06  [action=GET_RATE result=OK]
+INFO 2025-11-16T15:46:06  [action=BUY currency='7' amount=BTC result=OK]
+INFO 2025-11-16T15:53:51  [action=LOGIN result=OK]
+INFO 2025-11-16T15:54:55 Запуск обновления курсов валют
+INFO 2025-11-16T15:54:55 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T15:54:55 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T15:54:55 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T15:54:55 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T15:54:55 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T15:55:18 Запуск обновления курсов валют
+INFO 2025-11-16T15:55:18 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T15:55:18 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T15:55:18 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T15:55:18 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T15:55:18 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+WARNING 2025-11-16T15:55:18  [action=GET_RATE result=ERROR error_type='ExchangeRateUnavailableError' error='Курс USD→BTC недоступен']
+INFO 2025-11-16T15:59:30  [action=LOGIN result=OK]
+INFO 2025-11-16T15:59:40 Запуск обновления курсов валют
+INFO 2025-11-16T15:59:40 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T15:59:40 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T15:59:40 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T15:59:40 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T15:59:40 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T15:59:51 Запуск обновления курсов валют
+INFO 2025-11-16T15:59:51 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T15:59:52 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T15:59:52 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T15:59:52 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T15:59:52 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+WARNING 2025-11-16T15:59:52  [action=GET_RATE result=ERROR error_type='ExchangeRateUnavailableError' error='Курс USD→BTC недоступен']
+INFO 2025-11-16T16:02:00  [action=LOGIN result=OK]
+INFO 2025-11-16T16:02:13 Запуск обновления курсов валют
+INFO 2025-11-16T16:02:13 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:02:13 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:02:13 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:02:14 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:02:14 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+INFO 2025-11-16T16:02:25 Запуск обновления курсов валют
+INFO 2025-11-16T16:02:25 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:02:25 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:02:25 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:02:25 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:02:25 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 10
+WARNING 2025-11-16T16:02:25  [action=GET_RATE result=ERROR error_type='ExchangeRateUnavailableError' error='Курс USD→BTC недоступен']
+INFO 2025-11-16T16:06:44  [action=LOGIN result=OK]
+INFO 2025-11-16T16:06:53 Запуск обновления курсов валют
+INFO 2025-11-16T16:06:53 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:06:53 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:06:53 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:06:54 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:06:54 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:06:54 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:07:08 Запуск обновления курсов валют
+INFO 2025-11-16T16:07:08 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:07:08 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:07:08 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:07:08 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:07:08 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:07:08 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+WARNING 2025-11-16T16:07:08  [action=GET_RATE result=ERROR error_type='ExchangeRateUnavailableError' error='Курс USD→BTC недоступен']
+INFO 2025-11-16T16:10:43  [action=LOGIN result=OK]
+INFO 2025-11-16T16:10:52 Запуск обновления курсов валют
+INFO 2025-11-16T16:10:52 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:10:52 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:10:52 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:10:52 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:10:52 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:10:52 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:11:01 Запуск обновления курсов валют
+INFO 2025-11-16T16:11:01 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:11:01 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:11:01 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:11:01 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:11:01 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:11:01 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:11:01  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:11:01  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:11:01  [action=BUY currency='7' amount=BTC result=OK]
+INFO 2025-11-16T16:15:44  [action=LOGIN result=OK]
+INFO 2025-11-16T16:15:51 Запуск обновления курсов валют
+INFO 2025-11-16T16:15:51 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:15:51 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:15:51 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:15:52 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:15:52 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:15:52 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:16:01  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:16:01  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:16:01  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:16:01  [action=BUY currency='7' amount=BTC result=OK]
+INFO 2025-11-16T16:21:04  [action=LOGIN result=OK]
+INFO 2025-11-16T16:21:12 Запуск обновления курсов валют
+INFO 2025-11-16T16:21:12 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:21:13 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:21:13 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:21:13 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:21:13 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:21:13 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:21:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:21:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:21:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:21:13  [action=BUY currency='7' amount=BTC result=OK]
+INFO 2025-11-16T16:28:54  [action=LOGIN result=OK]
+INFO 2025-11-16T16:29:07 Запуск обновления курсов валют
+INFO 2025-11-16T16:29:07 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:29:07 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:29:07 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:29:07 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:29:07 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:29:07 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:29:20  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:29:20  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:29:20  [action=BUY currency='7' amount=BTC result=OK]
+INFO 2025-11-16T16:30:10 Запуск обновления курсов валют
+INFO 2025-11-16T16:30:10 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:30:10 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:30:10 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:30:11 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:30:11 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:30:11 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:30:11  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:30:11  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:32:51  [action=LOGIN result=OK]
+INFO 2025-11-16T16:33:05  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:33:05  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:33:05  [action=BUY currency='7' amount=BTC result=OK]
+INFO 2025-11-16T16:33:31  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:33:31  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:33:49  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:33:49  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:33:49  [action=BUY currency='7' amount=EUR result=OK]
+INFO 2025-11-16T16:34:03  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:34:03  [action=GET_RATE result=OK]
+WARNING 2025-11-16T16:34:03  [action=BUY currency='7' amount=EUR result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 20.8500 USD, требуется 86.0500 USD']
+INFO 2025-11-16T16:35:47  [action=REGISTER result=OK]
+INFO 2025-11-16T16:36:11  [action=LOGIN result=OK]
+INFO 2025-11-16T16:37:01 Запуск обновления курсов валют
+INFO 2025-11-16T16:37:01 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:37:01 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:37:01 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:37:01 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:37:01 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:37:01 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:38:31 Запуск обновления курсов валют
+INFO 2025-11-16T16:38:31 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T16:38:31 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T16:38:31 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T16:38:31 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T16:38:31 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T16:38:31 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T16:38:31  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:38:31  [action=GET_RATE result=OK]
+WARNING 2025-11-16T16:38:31  [action=BUY currency='8' amount=RUB result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 10000.0000 USD, требуется 80811.9000 USD']
+INFO 2025-11-16T16:44:03  [action=LOGIN result=OK]
+INFO 2025-11-16T16:44:16  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:44:16  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:44:16  [action=GET_RATE result=OK]
+WARNING 2025-11-16T16:44:16  [action=BUY currency='8' amount=RUB result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 10000.0000 USD, требуется 80811.9000 USD']
+INFO 2025-11-16T16:49:35  [action=LOGIN result=OK]
+INFO 2025-11-16T16:49:43  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:49:43  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:49:43  [action=GET_RATE result=OK]
+WARNING 2025-11-16T16:49:43  [action=BUY currency='8' amount=RUB result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 10000.0000 USD, требуется 80811.9000 USD']
+INFO 2025-11-16T16:57:09  [action=LOGIN result=OK]
+INFO 2025-11-16T16:57:17  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:57:17  [action=GET_RATE result=OK]
+INFO 2025-11-16T16:57:17  [action=GET_RATE result=OK]
+WARNING 2025-11-16T16:57:17  [action=BUY currency='8' amount=RUB result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 10000.0000 USD, требуется 80811.9000 USD']
+INFO 2025-11-16T17:08:02  [action=LOGIN result=OK]
+INFO 2025-11-16T17:08:11  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:08:11  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:08:11  [action=GET_RATE result=OK]
+WARNING 2025-11-16T17:08:11  [action=BUY currency='8' amount=RUB result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 10000.0000 USD, требуется 80811.9000 USD']
+INFO 2025-11-16T17:09:18  [action=LOGIN result=OK]
+INFO 2025-11-16T17:09:33 Запуск обновления курсов валют
+INFO 2025-11-16T17:09:33 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:09:33 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:09:33 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:09:33 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:09:33 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:09:33 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:10:03 Запуск обновления курсов валют
+INFO 2025-11-16T17:10:03 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:10:03 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:10:03 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:10:03 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:10:03 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:10:03 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:10:03  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:10:03  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:10:03  [action=GET_RATE result=OK]
+WARNING 2025-11-16T17:10:03  [action=BUY currency='8' amount=RUB result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 10000.0000 USD, требуется 80811.9000 USD']
+INFO 2025-11-16T17:14:02  [action=LOGIN result=OK]
+INFO 2025-11-16T17:14:11 Запуск обновления курсов валют
+INFO 2025-11-16T17:14:11 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:14:12 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:14:12 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:14:12 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:14:12 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:14:12 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:14:12 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:14:12 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:14:21 Запуск обновления курсов валют
+INFO 2025-11-16T17:14:21 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:14:21 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:14:21 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:14:21 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:14:21 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:14:21 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:14:21 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:14:21 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:14:21  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:14:21  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:14:21  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:14:21  [action=BUY currency='8' amount=RUB result=OK]
+INFO 2025-11-16T17:15:21 Запуск обновления курсов валют
+INFO 2025-11-16T17:15:21 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:15:21 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:15:21 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:15:21 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:15:22 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:15:22 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:15:22 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:15:22 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:15:22  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:15:22  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:15:22  [action=BUY currency='8' amount=ETH result=OK]
+INFO 2025-11-16T17:16:03 Запуск обновления курсов валют
+INFO 2025-11-16T17:16:03 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:16:03 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:16:03 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:16:03 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:16:04 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:16:04 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:16:04 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:16:04 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:16:28 Запуск обновления курсов валют
+INFO 2025-11-16T17:16:28 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:16:28 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:16:28 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:16:28 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:16:28 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:16:28 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:16:28 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:16:28 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:16:28  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:16:44  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:16:44  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:16:44  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:16:44  [action=BUY currency='8' amount=EUR result=OK]
+INFO 2025-11-16T17:16:56 Запуск обновления курсов валют
+INFO 2025-11-16T17:16:56 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:16:56 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:16:56 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:16:56 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:16:56 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:16:56 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:16:56 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:16:56 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:16:56  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:16:56  [action=GET_RATE result=OK]
+WARNING 2025-11-16T17:16:56  [action=BUY currency='8' amount=BTC result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 8214.1985 USD, требуется 47108.5000 USD']
+INFO 2025-11-16T17:17:14  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:17:14  [action=GET_RATE result=OK]
+WARNING 2025-11-16T17:17:14  [action=BUY currency='8' amount=BTC result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 8214.1985 USD, требуется 47108.5000 USD']
+INFO 2025-11-16T17:17:24  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:17:24  [action=GET_RATE result=OK]
+WARNING 2025-11-16T17:17:24  [action=BUY currency='8' amount=BTC result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 8214.1985 USD, требуется 9421.7000 USD']
+INFO 2025-11-16T17:17:54 Запуск обновления курсов валют
+INFO 2025-11-16T17:17:54 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:17:54 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:17:54 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:17:54 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:17:54 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:17:54 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:17:54 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:17:54 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:19:06 Запуск обновления курсов валют
+INFO 2025-11-16T17:19:06 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:19:06 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:19:06 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:19:06 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:19:07 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:19:07 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:19:07 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:19:07 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:19:07  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:19:07  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:19:07  [action=BUY currency='8' amount=LTC result=OK]
+INFO 2025-11-16T17:20:41  [action=REGISTER result=OK]
+INFO 2025-11-16T17:21:12  [action=LOGIN result=OK]
+INFO 2025-11-16T17:21:36 Запуск обновления курсов валют
+INFO 2025-11-16T17:21:36 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:21:36 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:21:36 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:21:36 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:21:36 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:21:36 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:21:36 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:21:36 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:22:06  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:14  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:14  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:14  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:14  [action=BUY currency='9' amount=EUR result=OK]
+INFO 2025-11-16T17:22:23  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:41  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:41  [action=GET_RATE result=OK]
+WARNING 2025-11-16T17:22:41  [action=BUY currency='9' amount=BTC result=ERROR error_type='InsufficientFundsError' error='Недостаточно средств: доступно 8837.8850 USD, требуется 47108.5000 USD']
+INFO 2025-11-16T17:22:48  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:48  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:48  [action=BUY currency='9' amount=BTC result=OK]
+INFO 2025-11-16T17:22:57  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:22:57  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:03  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:03  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:03  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:03  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:13  [action=SELL currency='9' amount=EUR result=OK]
+INFO 2025-11-16T17:23:23  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:23  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:31  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:31  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:47 Запуск обновления курсов валют
+INFO 2025-11-16T17:23:47 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:23:48 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:23:48 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:23:48 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:23:48 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:23:48 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:23:48 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:23:48 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:23:48  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:48  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:48  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:23:48  [action=BUY currency='9' amount=GBP result=OK]
+INFO 2025-11-16T17:24:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:24:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:24:13  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:31:34  [action=LOGIN result=OK]
+INFO 2025-11-16T17:31:40  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:31:40  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:31:40  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:32:20 Запуск обновления курсов валют
+INFO 2025-11-16T17:32:20 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:32:21 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:32:21 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:32:21 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:32:21 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:32:21 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:32:21 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:32:21 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:32:45  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:32:45  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:32:45  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:32:59  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:32:59  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:32:59  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:32:59  [action=SELL currency='9' amount=GBP result=OK]
+INFO 2025-11-16T17:33:09  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:33:09  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:33:09  [action=GET_RATE result=OK]
+WARNING 2025-11-16T17:41:38  [action=REGISTER result=ERROR error_type='UserAlreadyExistsError' error='Пользователь 'tttt' уже существует']
+INFO 2025-11-16T17:41:57  [action=REGISTER result=OK]
+INFO 2025-11-16T17:42:07  [action=LOGIN result=OK]
+INFO 2025-11-16T17:42:54 Запуск обновления курсов валют
+INFO 2025-11-16T17:42:54 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:42:54 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:42:54 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:42:54 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:42:54 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:42:54 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:42:54 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:42:54 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:43:14 Запуск обновления курсов валют
+INFO 2025-11-16T17:43:14 Опрос клиента: ExchangeRateApiClient
+INFO 2025-11-16T17:43:14 Обработано курсов от ExchangeRateApiClient: 5
+INFO 2025-11-16T17:43:14 Клиент ExchangeRateApiClient успешно обновил 5 курсов
+INFO 2025-11-16T17:43:14 Опрос клиента: CoinGeckoClient
+INFO 2025-11-16T17:43:15 Обработано курсов от CoinGeckoClient: 5
+INFO 2025-11-16T17:43:15 Клиент CoinGeckoClient успешно обновил 5 курсов
+INFO 2025-11-16T17:43:15 Добавлены обратные пары. Всего пар: 20
+INFO 2025-11-16T17:43:15 Обновление завершено. Успешно: 2, Ошибок: 0, Всего курсов: 20
+INFO 2025-11-16T17:43:15  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:43:27  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:43:27  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:43:27  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:43:27  [action=BUY currency='10' amount=EUR result=OK]
+INFO 2025-11-16T17:43:35  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:43:53  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:43:53  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:43:53  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:43:53  [action=SELL currency='10' amount=EUR result=OK]
+INFO 2025-11-16T17:44:01  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:44:54  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:44:54  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:44:54  [action=BUY currency='10' amount=LTC result=OK]
+INFO 2025-11-16T17:45:12  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:45:12  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:45:38  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:45:38  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:45:38  [action=SELL currency='10' amount=LTC result=OK]
+INFO 2025-11-16T17:45:45  [action=GET_RATE result=OK]
+INFO 2025-11-16T17:45:45  [action=GET_RATE result=OK]

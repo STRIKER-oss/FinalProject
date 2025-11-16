@@ -76,7 +76,7 @@ class CoinGeckoClient(BaseApiClient):
             
             for crypto_code, gecko_id in config.CRYPTO_ID_MAP.items():
                 if gecko_id in data and 'usd' in data[gecko_id]:
-                    pair_key = f"{crypto_code}_{config.BASE_CURRENCY}"
+                    pair_key = f"{crypto_code}_USD"
                     rates[pair_key] = float(data[gecko_id]['usd'])
             
             if not rates:
@@ -99,10 +99,8 @@ class ExchangeRateApiClient(BaseApiClient):
         
         try:
             result = self._make_request(url)
-            
             rates = {}
             data = result['data']
-            meta = result['meta']
             
             if data.get('result') != 'success':
                 error_type = data.get('error-type', 'unknown')
@@ -112,8 +110,8 @@ class ExchangeRateApiClient(BaseApiClient):
             rates_data = data.get('conversion_rates', {})
             
             for currency in config.FIAT_CURRENCIES:
-                if currency in rates_data:
-                    pair_key = f"{currency}_{config.BASE_CURRENCY}"
+                if currency in rates_data and currency != 'USD':
+                    pair_key = f"USD_{currency}"
                     rates[pair_key] = float(rates_data[currency])
             
             if not rates:
@@ -121,7 +119,7 @@ class ExchangeRateApiClient(BaseApiClient):
             
             rates['_meta'] = {
                 'source': 'ExchangeRate-API', 
-                'request_meta': meta,
+                'request_meta': result['meta'],
                 'base_currency': base_currency,
                 'time_last_update_utc': data.get('time_last_update_utc')
             }

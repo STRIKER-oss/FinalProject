@@ -19,5 +19,54 @@
     "hashed_password": "e5cb1757f8725c3801ff89717406c07a3e8aa35e1759f54d614909a7dbe37184",
     "salt": "3628dc6b",
     "registration_date": "2025-11-16T14:38:21.049398"
+  },
+  {
+    "user_id": 4,
+    "username": "<name>",
+    "hashed_password": "45963c5553df225f44d76672871caab1c8003142aa1e00656f190908aa12432c",
+    "salt": "fa8c80af",
+    "registration_date": "2025-11-16T14:52:13.337235"
+  },
+  {
+    "user_id": 5,
+    "username": "trader",
+    "hashed_password": "1d1d903e5d5bc05a30a27c1dd45fb566ed2a572d65f6a1c36d2e90530cfbf1c3",
+    "salt": "7437d61e",
+    "registration_date": "2025-11-16T15:10:29.485813"
+  },
+  {
+    "user_id": 6,
+    "username": "tttt",
+    "hashed_password": "d10404b92b50cf1c5fbb2cdc9cfa52f7f86ad68a6edc52718e5ca08def555c7e",
+    "salt": "da28fc23",
+    "registration_date": "2025-11-16T15:20:28.221329"
+  },
+  {
+    "user_id": 7,
+    "username": "qwer",
+    "hashed_password": "6494b0ac803767c6011bd23643f36d24408e5e7bf450d5123788e78828ce8da9",
+    "salt": "098f4a6e",
+    "registration_date": "2025-11-16T15:44:44.842971"
+  },
+  {
+    "user_id": 8,
+    "username": "kkkko",
+    "hashed_password": "1c29b2f197c51f9bc36b8ae56650e7145df2980d8b5388ec5835141ccbed772f",
+    "salt": "7cb5af55",
+    "registration_date": "2025-11-16T16:35:47.416797"
+  },
+  {
+    "user_id": 9,
+    "username": "qwert",
+    "hashed_password": "3517ad7de46424e1559d1134fd772e320d6d949dd8b74785ce701031151e78b4",
+    "salt": "a46c2a48",
+    "registration_date": "2025-11-16T17:20:41.211372"
+  },
+  {
+    "user_id": 10,
+    "username": "qwqw",
+    "hashed_password": "c10ac359054adebf85bc4cde772506e15372dde648ac6912920aabac878e51d6",
+    "salt": "26b80dcd",
+    "registration_date": "2025-11-16T17:41:57.237133"
   }
 ]

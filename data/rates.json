@@ -1,11 +1,113 @@
 {
-  "USD_EUR": {
-    "rate": 0.92,
-    "updated_at": "2025-11-16T14:14:16.838571"
+  "pairs": {
+    "USD_EUR": {
+      "rate": 0.8605,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API"
+    },
+    "USD_GBP": {
+      "rate": 0.7596,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API"
+    },
+    "USD_JPY": {
+      "rate": 154.4657,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API"
+    },
+    "USD_RUB": {
+      "rate": 80.8119,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API"
+    },
+    "USD_CNY": {
+      "rate": 7.1062,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API"
+    },
+    "BTC_USD": {
+      "rate": 94313.0,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko"
+    },
+    "ETH_USD": {
+      "rate": 3066.24,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko"
+    },
+    "LTC_USD": {
+      "rate": 96.37,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko"
+    },
+    "XRP_USD": {
+      "rate": 2.17,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko"
+    },
+    "ADA_USD": {
+      "rate": 0.479606,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko"
+    },
+    "EUR_USD": {
+      "rate": 1.1621150493898895,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API (calculated)"
+    },
+    "GBP_USD": {
+      "rate": 1.3164823591363874,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API (calculated)"
+    },
+    "JPY_USD": {
+      "rate": 0.006473929163561878,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API (calculated)"
+    },
+    "RUB_USD": {
+      "rate": 0.012374415154203774,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API (calculated)"
+    },
+    "CNY_USD": {
+      "rate": 0.14072218625988572,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "ExchangeRate-API (calculated)"
+    },
+    "USD_BTC": {
+      "rate": 1.060299216438879e-05,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko (calculated)"
+    },
+    "USD_ETH": {
+      "rate": 0.0003261323314548111,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko (calculated)"
+    },
+    "USD_LTC": {
+      "rate": 0.010376673238559717,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko (calculated)"
+    },
+    "USD_XRP": {
+      "rate": 0.4608294930875576,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko (calculated)"
+    },
+    "USD_ADA": {
+      "rate": 2.0850448076129156,
+      "updated_at": "2025-11-16T17:32:20.963601+00:00",
+      "source": "CoinGecko (calculated)"
+    }
   },
-  "last_refresh": "2025-11-16T14:39:31.453477",
-  "BTC_USD": {
-    "rate": 59337.21,
-    "updated_at": "2025-11-16T14:39:31.453477"
+  "last_refresh": "2025-11-16T17:44:54.902768",
+  "USD_EUR": {
+    "rate": 0.8605,
+    "updated_at": "2025-11-16T17:43:15.118383"
+  },
+  "LTC_USD": {
+    "rate": 96.37,
+    "updated_at": "2025-11-16T17:44:54.902768"
   }
 }

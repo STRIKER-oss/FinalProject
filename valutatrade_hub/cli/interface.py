@@ -10,7 +10,6 @@ from ..core.exceptions import (
 from ..core.utils import format_datetime
 from ..core.currencies import CurrencyRegistry
 from ..infra.settings import settings
-from ..logging_config import get_logger
 from ..parser_service.updater import RatesUpdater
 from ..parser_service.storage import RatesStorage
 from ..parser_service.api_clients import ApiClientFactory
@@ -421,18 +420,23 @@ class CLIInterface:
         currency = currency.upper()
         
         try:
-            CurrencyRegistry.get_currency(currency)
+            currency_obj = CurrencyRegistry.get_currency(currency)
             
             portfolio = self.portfolio_manager.get_portfolio(self.current_user.user_id)
             old_balance = portfolio.get_balance(currency)
             old_usd_balance = portfolio.get_balance("USD")
             
-            exchange_rate = self.currency_manager.get_rate("USD", currency)
+            exchange_rate = self.currency_manager.get_rate(currency, "USD")
             purchase_cost = amount * exchange_rate
             
             print(f"Покупка {amount:.4f} {currency}...")
             print(f"Стоимость покупки: {purchase_cost:.2f} USD")
-            print(f"Курс: 1 {currency} = {exchange_rate:.2f} USD")
+            
+            if hasattr(currency_obj, 'issuing_country'):
+                usd_to_currency_rate = self.currency_manager.get_rate("USD", currency)
+                print(f"Курс: 1 USD = {usd_to_currency_rate:.4f} {currency}")
+            else:
+                print(f"Курс: 1 {currency} = {exchange_rate:.2f} USD")
             
             if self.portfolio_manager.buy_currency(self.current_user.user_id, currency, amount):
                 new_balance = portfolio.get_balance(currency)
@@ -487,7 +491,7 @@ class CLIInterface:
         currency = currency.upper()
         
         try:
-            CurrencyRegistry.get_currency(currency)
+            currency_obj = CurrencyRegistry.get_currency(currency)
             
             portfolio = self.portfolio_manager.get_portfolio(self.current_user.user_id)
             old_balance = portfolio.get_balance(currency)
@@ -498,7 +502,12 @@ class CLIInterface:
             
             print(f"Продажа {amount:.4f} {currency}...")
             print(f"Ожидаемая выручка: {usd_revenue:.2f} USD")
-            print(f"Курс: 1 {currency} = {exchange_rate:.2f} USD")
+            
+            if hasattr(currency_obj, 'issuing_country'):
+                usd_to_currency_rate = self.currency_manager.get_rate("USD", currency)
+                print(f"Курс: 1 USD = {usd_to_currency_rate:.4f} {currency}")
+            else:
+                print(f"Курс: 1 {currency} = {exchange_rate:.2f} USD")
             
             if old_balance < amount:
                 raise InsufficientFundsError(

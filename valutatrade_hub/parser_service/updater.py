@@ -46,23 +46,25 @@ class RatesUpdater:
                 meta_info = rates_data.pop('_meta', {})
                 source = meta_info.get('source', client_name)
                 
-                for pair, rate in rates_data.items():
+                processed_rates = self._process_api_rates(rates_data, source, client_name)
+                
+                for pair, rate in processed_rates.items():
                     all_rates[pair] = {
                         'rate': rate,
                         'updated_at': current_time,
                         'source': source
                     }
                 
-                self._save_historical_data(rates_data, source, meta_info, current_time)
+                self._save_historical_data(processed_rates, source, meta_info, current_time)
                 
                 self.successful_updates += 1
                 update_results['successful'].append({
                     'client': client_name,
-                    'rates_count': len(rates_data),
+                    'rates_count': len(processed_rates),
                     'source': source
                 })
                 
-                logger.info(f"Клиент {client_name} успешно обновил {len(rates_data)} курсов")
+                logger.info(f"Клиент {client_name} успешно обновил {len(processed_rates)} курсов")
                 
             except Exception as e:
                 self.failed_updates += 1
@@ -79,6 +81,8 @@ class RatesUpdater:
             logger.error(error_msg)
             raise Exception(error_msg)
         
+        all_rates = self._add_reverse_pairs(all_rates, current_time)
+        
         final_result = {
             'pairs': all_rates,
             'last_refresh': current_time
@@ -94,6 +98,55 @@ class RatesUpdater:
         )
         
         return update_results
+    
+    def _process_api_rates(self, rates_data: Dict[str, float], source: str, client_name: str) -> Dict[str, float]:
+        processed_rates = {}
+        
+        if client_name == 'ExchangeRateApiClient':
+            for pair, rate in rates_data.items():
+                if pair.startswith('USD_'):
+                    processed_rates[pair] = rate
+                else:
+                    logger.warning(f"Неожиданный формат пары от ExchangeRate-API: {pair}")
+        
+        elif client_name == 'CoinGeckoClient':
+            for pair, rate in rates_data.items():
+                if pair.endswith('_USD'):
+                    processed_rates[pair] = rate
+                else:
+                    logger.warning(f"Неожиданный формат пары от CoinGecko: {pair}")
+        
+        else:
+            processed_rates = rates_data
+        
+        logger.info(f"Обработано курсов от {client_name}: {len(processed_rates)}")
+        return processed_rates
+    
+    def _add_reverse_pairs(self, rates: Dict[str, Any], timestamp: str) -> Dict[str, Any]:
+        extended_rates = rates.copy()
+        
+        for pair_key, rate_info in rates.items():
+            if '_' not in pair_key:
+                continue
+                
+            from_curr, to_curr = pair_key.split('_', 1)
+            reverse_pair = f"{to_curr}_{from_curr}"
+            
+            if reverse_pair not in extended_rates:
+                try:
+                    rate = rate_info['rate']
+                    if rate > 0:
+                        reverse_rate = 1.0 / rate
+                        extended_rates[reverse_pair] = {
+                            'rate': reverse_rate,
+                            'updated_at': timestamp,
+                            'source': f"{rate_info.get('source', 'unknown')} (calculated)"
+                        }
+                except (KeyError, ZeroDivisionError):
+                    continue
+        
+        logger.info(f"Добавлены обратные пары. Всего пар: {len(extended_rates)}")
+        return extended_rates
     
     def _save_historical_data(self, rates_data: Dict[str, float], source: str, 
                             meta_info: Dict[str, Any], timestamp: str) -> None:

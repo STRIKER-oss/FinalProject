@@ -29,5 +29,140 @@
         "balance": 100.0
       }
     }
+  },
+  {
+    "user_id": 4,
+    "wallets": {
+      "USD": {
+        "currency_code": "USD",
+        "balance": 9683.972957867922
+      },
+      "BTC": {
+        "currency_code": "BTC",
+        "balance": 2.5
+      },
+      "GBP": {
+        "currency_code": "GBP",
+        "balance": 400.0
+      },
+      "ETH": {
+        "currency_code": "ETH",
+        "balance": 100.0
+      }
+    }
+  },
+  {
+    "user_id": 5,
+    "wallets": {
+      "USD": {
+        "currency_code": "USD",
+        "balance": 8159.999991573584
+      },
+      "EUR": {
+        "currency_code": "EUR",
+        "balance": 2000.0
+      },
+      "BTC": {
+        "currency_code": "BTC",
+        "balance": 0.5
+      }
+    }
+  },
+  {
+    "user_id": 6,
+    "wallets": {
+      "USD": {
+        "currency_code": "USD",
+        "balance": 9539.999996629998
+      },
+      "EUR": {
+        "currency_code": "EUR",
+        "balance": 500.0
+      },
+      "BTC": {
+        "currency_code": "BTC",
+        "balance": 0.2
+      }
+    }
+  },
+  {
+    "user_id": 7,
+    "wallets": {
+      "USD": {
+        "currency_code": "USD",
+        "balance": 20.84999408175935
+      },
+      "EUR": {
+        "currency_code": "EUR",
+        "balance": 600.0
+      },
+      "BTC": {
+        "currency_code": "BTC",
+        "balance": 0.6
+      }
+    }
+  },
+  {
+    "user_id": 8,
+    "wallets": {
+      "USD": {
+        "currency_code": "USD",
+        "balance": 7246.298535455908
+      },
+      "RUB": {
+        "currency_code": "RUB",
+        "balance": 1000.0
+      },
+      "ETH": {
+        "currency_code": "ETH",
+        "balance": 0.2
+      },
+      "EUR": {
+        "currency_code": "EUR",
+        "balance": 1000.0
+      },
+      "LTC": {
+        "currency_code": "LTC",
+        "balance": 10.0
+      }
+    }
+  },
+  {
+    "user_id": 9,
+    "wallets": {
+      "USD": {
+        "currency_code": "USD",
+        "balance": 8244.349465427078
+      },
+      "EUR": {
+        "currency_code": "EUR",
+        "balance": 700.0
+      },
+      "BTC": {
+        "currency_code": "BTC",
+        "balance": 0.01
+      },
+      "GBP": {
+        "currency_code": "GBP",
+        "balance": 0.0
+      }
+    }
+  },
+  {
+    "user_id": 10,
+    "wallets": {
+      "USD": {
+        "currency_code": "USD",
+        "balance": 10000.0
+      },
+      "EUR": {
+        "currency_code": "EUR",
+        "balance": 0.0
+      },
+      "LTC": {
+        "currency_code": "LTC",
+        "balance": 0.0
+      }
+    }
   }
 ]

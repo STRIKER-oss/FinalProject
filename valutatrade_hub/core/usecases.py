@@ -7,7 +7,7 @@ from .models import User, Portfolio
 from .exceptions import (
     InsufficientFundsError, CurrencyNotFoundError, ApiRequestError,
     UserNotFoundError, UserAlreadyExistsError, InvalidPasswordError,
-    InvalidAmountError, ExchangeRateUnavailableError
+    WalletNotFoundError, InvalidAmountError, ExchangeRateUnavailableError
 )
 from .utils import is_rate_fresh
 from .currencies import get_currency
@@ -26,16 +26,14 @@ class UserManager:
         try:
             users_data = self.database.load_data(self.users_file, default=[])
             return [User.from_dict(user_data) for user_data in users_data]
-        except Exception as e:
-            print(f"Error loading users: {e}")
+        except Exception:
             return []
     
     def save_users(self) -> None:
         try:
             users_data = [user.to_dict() for user in self.users]
             self.database.save_data(users_data, self.users_file)
-        except Exception as e:
-            print(f"Error saving users: {e}")
+        except Exception:
             raise
     
     def get_next_user_id(self) -> int:
@@ -64,12 +62,8 @@ class UserManager:
         self.users.append(new_user)
         self.save_users()
         
-        print(f"DEBUG: User {new_user_id} created and saved")
-        
         portfolio_manager = PortfolioManager(data_dir=self.data_dir, user_manager=self)
         portfolio = portfolio_manager.get_portfolio(new_user_id)
-        
-        print(f"DEBUG: Portfolio created for user {new_user_id}")
         
         success = portfolio.add_currency("USD", 10000.0)
         if not success:
@@ -77,14 +71,7 @@ class UserManager:
             if usd_wallet:
                 usd_wallet.balance = 10000.0
         
-        print(f"DEBUG: USD balance set to: {portfolio.get_balance('USD')}")
-        
         portfolio_manager.save_portfolio(portfolio)
-        
-        print(f"DEBUG: Portfolio saved for user {new_user_id}")
-        
-        saved_portfolio = portfolio_manager.get_portfolio(new_user_id)
-        print(f"DEBUG: After save, USD balance: {saved_portfolio.get_balance('USD')}")
         
         return True
     
@@ -150,18 +137,14 @@ class PortfolioManager:
                 result[user_id] = Portfolio.from_dict(portfolio_data, user)
             
             return result
-        except Exception as e:
-            print(f"Error loading portfolios: {e}")
+        except Exception:
             return {}
     
     def save_portfolios(self) -> None:
         try:
             portfolios_data = [portfolio.to_dict() for portfolio in self.portfolios.values()]
-            print(f"DEBUG: Saving {len(portfolios_data)} portfolios to {self.portfolios_file}")
             self.database.save_data(portfolios_data, self.portfolios_file)
-            print(f"DEBUG: Portfolios saved successfully")
-        except Exception as e:
-            print(f"Error saving portfolios: {e}")
+        except Exception:
             raise
     
     def get_portfolio(self, user_id: int) -> Portfolio:
@@ -174,16 +157,14 @@ class PortfolioManager:
                         if self.user_manager:
                             user = self.user_manager.find_user_by_id(user_id)
                         self.portfolios[user_id] = Portfolio.from_dict(portfolio_data, user)
-                        print(f"DEBUG: Loaded existing portfolio for user {user_id}")
                         return self.portfolios[user_id]
-            except Exception as e:
-                print(f"DEBUG: Error loading portfolio for user {user_id}: {e}")
+            except Exception:
+                pass
                     
             user = None
             if self.user_manager:
                 user = self.user_manager.find_user_by_id(user_id)
             self.portfolios[user_id] = Portfolio(user_id, user)
-            print(f"DEBUG: Created new portfolio for user {user_id}")
         return self.portfolios[user_id]
     
     def get_portfolio_by_username(self, username: str) -> Optional[Portfolio]:
@@ -197,10 +178,8 @@ class PortfolioManager:
         return self.get_portfolio(user.user_id)
     
     def save_portfolio(self, portfolio: Portfolio) -> None:
-        print(f"DEBUG: Saving portfolio for user {portfolio.user_id}")
         self.portfolios[portfolio.user_id] = portfolio
         self.save_portfolios()
-        print(f"DEBUG: Portfolio saved to file")
     
     def add_currency_to_portfolio(self, user_id: int, currency_code: str, 
                                  initial_balance: float = 0.0) -> bool:
@@ -253,10 +232,10 @@ class PortfolioManager:
         
         try:
             exchange_rate = self.currency_manager.get_rate("USD", currency_code)
+            cost_in_usd = amount / exchange_rate
+            
         except (CurrencyNotFoundError, ExchangeRateUnavailableError, ApiRequestError) as e:
             raise e
-        
-        cost_in_usd = amount * exchange_rate
         
         usd_balance = portfolio.get_balance("USD")
         if usd_balance < cost_in_usd:
@@ -266,11 +245,25 @@ class PortfolioManager:
                 required=cost_in_usd
             )
         
-        success = portfolio.buy_currency("USD", currency_code, amount, exchange_rate)
-        if success:
-            self.save_portfolio(portfolio)
+        usd_wallet = portfolio.get_wallet("USD")
+        if not usd_wallet:
+            raise WalletNotFoundError("USD")
         
-        return success
+        if not usd_wallet.withdraw(cost_in_usd):
+            raise InsufficientFundsError(
+                currency_code="USD",
+                available=usd_wallet.balance,
+                required=cost_in_usd
+            )
+        
+        target_wallet = portfolio.get_wallet(currency_code)
+        if target_wallet:
+            target_wallet.deposit(amount)
+        else:
+            portfolio.add_currency(currency_code, amount)
+        
+        self.save_portfolio(portfolio)
+        return True
     
     @log_action("SELL", verbose=True)
     def sell_currency(self, user_id: int, currency_code: str, amount: float) -> bool:
@@ -294,14 +287,30 @@ class PortfolioManager:
         
         try:
             exchange_rate = self.currency_manager.get_rate(currency_code, "USD")
+            usd_revenue = amount * exchange_rate
+            
         except (CurrencyNotFoundError, ExchangeRateUnavailableError, ApiRequestError) as e:
             raise e
         
-        success = portfolio.sell_currency(currency_code, "USD", amount, exchange_rate)
-        if success:
-            self.save_portfolio(portfolio)
+        from_wallet = portfolio.get_wallet(currency_code)
+        if not from_wallet:
+            raise WalletNotFoundError(currency_code)
         
-        return success
+        if not from_wallet.withdraw(amount):
+            raise InsufficientFundsError(
+                currency_code=currency_code,
+                available=from_wallet.balance,
+                required=amount
+            )
+        
+        usd_wallet = portfolio.get_wallet("USD")
+        if usd_wallet:
+            usd_wallet.deposit(usd_revenue)
+        else:
+            portfolio.add_currency("USD", usd_revenue)
+        
+        self.save_portfolio(portfolio)
+        return True
     
     def get_total_portfolio_value(self, user_id: int, exchange_rates: Dict[str, float], 
                                  base_currency: str = 'USD') -> float:
@@ -322,47 +331,63 @@ class CurrencyManager:
     def _load_rates(self) -> Dict:
         try:
             return self.database.load_data(self.rates_file, default={})
-        except Exception as e:
-            print(f"Error loading rates: {e}")
+        except Exception:
             return {}
     
     def save_rates(self) -> None:
         try:
             self.database.save_data(self.rates_data, self.rates_file)
-        except Exception as e:
-            print(f"Error saving rates: {e}")
+        except Exception:
             raise
     
     def _get_fresh_rate_from_api(self, from_currency: str, to_currency: str) -> Optional[float]:
-        import random
-        if random.random() < 0.1:
-            raise ApiRequestError("Сервер временно недоступен")
-        
-        mock_rates = {
-            "USD_EUR": 0.92,
-            "EUR_USD": 1.09,
-            "USD_GBP": 0.79,
-            "GBP_USD": 1.27,
-            "USD_JPY": 148.50,
-            "JPY_USD": 0.0067,
-            "USD_RUB": 98.42,
-            "RUB_USD": 0.01016,
-            "USD_CNY": 7.25,
-            "CNY_USD": 0.138,
-            "USD_BTC": 0.00001685,
-            "BTC_USD": 59337.21,
-            "USD_ETH": 0.00027,
-            "ETH_USD": 3720.00,
-            "USD_LTC": 0.0056,
-            "LTC_USD": 178.57,
-            "USD_XRP": 1.85,
-            "XRP_USD": 0.54,
-            "USD_ADA": 3.45,
-            "ADA_USD": 0.29
-        }
-        
+        try:
+            from ..parser_service.storage import RatesStorage
+            from ..parser_service.updater import RatesUpdater
+            
+            storage = RatesStorage()
+            
+            current_rates = storage.load_current_rates()
+            
+            if current_rates and 'pairs' in current_rates and 'last_refresh' in current_rates:
+                if is_rate_fresh(current_rates['last_refresh'], settings.get_rates_ttl()):
+                    rate = self._find_rate_in_pairs(current_rates['pairs'], from_currency, to_currency)
+                    if rate is not None:
+                        return rate
+            
+            updater = RatesUpdater()
+            result = updater.run_update()
+            
+            if result and 'pairs' in result:
+                rate = self._find_rate_in_pairs(result['pairs'], from_currency, to_currency)
+                if rate is not None:
+                    return rate
+            
+            updated_rates = storage.load_current_rates()
+            if updated_rates and 'pairs' in updated_rates:
+                rate = self._find_rate_in_pairs(updated_rates['pairs'], from_currency, to_currency)
+                if rate is not None:
+                    return rate
+            
+            raise ExchangeRateUnavailableError(from_currency, to_currency)
+            
+        except Exception:
+            raise ExchangeRateUnavailableError(from_currency, to_currency)
+
+    def _find_rate_in_pairs(self, pairs: Dict, from_currency: str, to_currency: str) -> Optional[float]:
         pair_key = f"{from_currency}_{to_currency}"
-        return mock_rates.get(pair_key)
+        if pair_key in pairs:
+            rate_info = pairs[pair_key]
+            if isinstance(rate_info, dict) and 'rate' in rate_info:
+                return rate_info['rate']
+        
+        reverse_pair_key = f"{to_currency}_{from_currency}"
+        if reverse_pair_key in pairs:
+            rate_info = pairs[reverse_pair_key]
+            if isinstance(rate_info, dict) and 'rate' in rate_info:
+                return 1.0 / rate_info['rate']
+        
+        return None
     
     def _update_rate_in_cache(self, from_currency: str, to_currency: str, rate: float):
         pair_key = f"{from_currency}_{to_currency}"
